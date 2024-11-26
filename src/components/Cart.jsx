@@ -1,6 +1,10 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { cartTotal, setDrawer } from "../redux/slices/cartSlice";
+import {
+  cartTotal,
+  setDrawer,
+  removeFromCart,
+} from "../redux/slices/cartSlice";
 import { useEffect } from "react";
 
 const Cart = () => {
@@ -91,6 +95,7 @@ const Cart = () => {
 
                 {/* Silme Butonu */}
                 <Button
+                  onClick={() => dispatch(removeFromCart({ id: product.id }))}
                   variant="outlined"
                   color="error"
                   size="small"

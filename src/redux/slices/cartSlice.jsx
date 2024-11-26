@@ -40,20 +40,32 @@ export const cartSlice = createSlice({
         saveToLocalStorage(state.productsInCart);
       }
     },
+    removeFromCart: (state, action) => {
+      // Filter out the product with the given ID
+      state.productsInCart = state.productsInCart.filter(
+        (product) => product.id !== action.payload.id
+      );
+      saveToLocalStorage(state.productsInCart);
+      state.totalAmount = state.productsInCart.reduce(
+        (total, product) => total + product.price * product.itemCount,
+        0
+      );
+      state.totalAmount = parseFloat(state.totalAmount.toFixed(2));
+    },
     setDrawer: (state) => {
       state.drawer = !state.drawer;
     },
     cartTotal: (state) => {
-      state.totalAmount = 0;
-      state.productsInCart &&
-        state.productsInCart.map((product) => {
-          state.totalAmount += product.price * product.itemCount;
-        });
+      state.totalAmount = state.productsInCart.reduce(
+        (total, product) => total + product.price * product.itemCount,
+        0
+      );
       state.totalAmount = parseFloat(state.totalAmount.toFixed(2));
     },
   },
 });
 
-export const { addToCart, setDrawer, cartTotal } = cartSlice.actions;
+export const { addToCart, setDrawer, cartTotal, removeFromCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

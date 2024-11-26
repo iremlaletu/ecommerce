@@ -21,10 +21,11 @@ body {
   justify-content: center;
 }
 
+/* aria-hiiden error */
 .MuiDrawer-root {
-  z-index: 1300; /* Z-index değerini ayarlayarak */
+  z-index: 1300;
 }
 
 .MuiBackdrop-root {
-  z-index: 1299; /* Backdrop katmanını aşağıya al */
+  z-index: 1299;
 }

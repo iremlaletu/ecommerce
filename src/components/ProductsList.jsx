@@ -6,10 +6,16 @@ import { Box } from "@mui/material";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((store) => store.product);
+  const { products, searchTerm } = useSelector((store) => store.product);
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
+
+  const filteredProducts = searchTerm
+    ? products.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : products;
 
   return (
     <Box
@@ -20,10 +26,9 @@ const ProductsList = () => {
         justifyContent: "center",
       }}
     >
-      {products &&
-        products.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
+      {filteredProducts.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
     </Box>
   );
 };

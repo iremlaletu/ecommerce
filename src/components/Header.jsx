@@ -1,40 +1,98 @@
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import "../css/Header.css";
-import { Badge } from "@mui/material";
+import { Badge, Box, Button, Grid2, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setDrawer } from "../redux/slices/cartSlice";
+import { setSearchTerm } from "../redux/slices/productSlice";
+import { useState } from "react";
+import { IoIosSearch } from "react-icons/io";
+import { MdClear } from "react-icons/md";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchInput, setSearchInput] = useState("");
   const { productsInCart } = useSelector((store) => store.cart);
+
+  const handleSearchClick = () => {
+    dispatch(setSearchTerm(searchInput));
+  };
+
+  const handleClearSearch = () => {
+    setSearchInput("");
+    dispatch(setSearchTerm(""));
+  };
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   return (
-    <div className="headerContainer">
-      <div
-        onClick={() => navigate("/")}
-        className="flex-row"
-        style={{ cursor: "pointer" }}
-      >
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        width: "100%",
+      }}
+    >
+      <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
         <p>e-commerce</p>
-      </div>
-      <div className="flex-row">
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          flexDirection: isMobile ? "column" : "row",
+          width: "100%",
+          maxWidth: isMobile ? "80%" : "500px",
+          flexGrow: 1,
+        }}
+      >
         <input
           className="search-input"
           type="text"
           placeholder="Search Products..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
-        <div>
-          <Badge
-            onClick={() => dispatch(setDrawer())}
-            badgeContent={productsInCart.length}
-            color="error"
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 2,
+          }}
+        >
+          <Button
+            onClick={handleSearchClick}
+            variant="text"
+            size="small"
+            color="success"
+            startIcon={<IoIosSearch />}
           >
-            <FaShoppingCart className="icon" />
-          </Badge>
-        </div>
-      </div>
-    </div>
+            Search
+          </Button>
+          <Button
+            onClick={handleClearSearch}
+            variant="text"
+            color="error"
+            size="small"
+            startIcon={<MdClear />}
+            sx={{ whiteSpace: "nowrap" }}
+          >
+            Clear Filter
+          </Button>
+        </Box>
+      </Box>
+
+      <Badge
+        onClick={() => dispatch(setDrawer())}
+        badgeContent={productsInCart.length}
+        color="error"
+      >
+        <FaShoppingCart className="icon" />
+      </Badge>
+    </Box>
   );
 };
 
