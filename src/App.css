@@ -1,0 +1,30 @@
+#root {
+  height: 100vh;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.MuiDrawer-root {
+  z-index: 1300; /* Z-index değerini ayarlayarak */
+}
+
+.MuiBackdrop-root {
+  z-index: 1299; /* Backdrop katmanını aşağıya al */
+}
