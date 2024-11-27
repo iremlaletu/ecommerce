@@ -3,7 +3,7 @@ import ProductsList from "../components/ProductsList";
 
 const Home = () => {
   return (
-    <div style={{ paddingTop: "50px" }}>
+    <div style={{ paddingTop: "70px" }}>
       <ProductsList />
     </div>
   );

@@ -1,13 +1,12 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
-import "../css/Header.css";
-import { Badge, Box, Button, Grid2, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { Badge, Box, Button, TextField, useMediaQuery } from "@mui/material";
 import { setDrawer } from "../redux/slices/cartSlice";
 import { setSearchTerm } from "../redux/slices/productSlice";
-import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdClear } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,6 +28,7 @@ const Header = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "row",
         justifyContent: "space-between",
         flexWrap: "wrap",
         width: "100%",
@@ -49,12 +49,18 @@ const Header = () => {
           flexGrow: 1,
         }}
       >
-        <input
-          className="search-input"
-          type="text"
+        <TextField
+          variant="standard"
           placeholder="Search Products..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          sx={{
+            width: "100%",
+            "& .MuiInput-underline:before": { borderBottom: "1px solid gray" },
+            "& .MuiInput-underline:hover:before": {
+              borderBottom: "1px solid black",
+            },
+          }}
         />
         <Box
           sx={{
@@ -90,7 +96,13 @@ const Header = () => {
         badgeContent={productsInCart.length}
         color="error"
       >
-        <FaShoppingCart className="icon" />
+        <FaShoppingCart
+          style={{
+            fontSize: "25px",
+            marginRight: "10px",
+            cursor: "pointer",
+          }}
+        />
       </Badge>
     </Box>
   );

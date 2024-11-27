@@ -110,7 +110,7 @@ const Cart = () => {
               </Stack>
             </Stack>
           ))}
-        <h2> Total Amount: {totalAmount} </h2>
+        <h2> Total Amount: {totalAmount}$ </h2>
       </Stack>
     </>
   );

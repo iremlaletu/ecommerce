@@ -23,7 +23,7 @@ export const productSlice = createSlice({
       state.selectedProduct = action.payload;
     },
     setSearchTerm: (state, action) => {
-      state.searchTerm = action.payload; // Arama terimi güncelleniyor
+      state.searchTerm = action.payload;
     },
   },
   extraReducers: (builder) => {

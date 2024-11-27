@@ -96,6 +96,7 @@ const ProductDetail = () => {
           <h3>{title}</h3>
           <h5>{description}</h5>
           <h1>{price}$</h1>
+          <h6 style={{ placeSelf: "end" }}> {count} are left </h6>
 
           {getCartItemCount() > 0 && (
             <Box
@@ -107,7 +108,7 @@ const ProductDetail = () => {
                 },
               }}
             >
-              Already In Cart: {getCartItemCount()} items
+              Already In Cart: X {getCartItemCount()}
             </Box>
           )}
           <Box

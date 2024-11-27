@@ -1,16 +1,16 @@
-import { MdOutlineLightMode } from "react-icons/md";
-import Header from "./components/Header";
-import { FaCloudMoon } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import PageWrapper from "./Layouts/PageWrapper";
-import RouterConfig from "./config/RouterConfig";
-import "./App.css";
-import { ThemeProvider, CssBaseline, Drawer } from "@mui/material";
-import { lightTheme, darkTheme } from "./config/theme";
+import Header from "./components/Header";
 import Loading from "./components/Loading";
 import Cart from "./components/Cart";
-import { useDispatch, useSelector } from "react-redux";
+import PageWrapper from "./Layouts/PageWrapper";
+import RouterConfig from "./config/RouterConfig";
+import { lightTheme, darkTheme } from "./config/theme";
+import { ThemeProvider, CssBaseline, Drawer } from "@mui/material";
 import { setDrawer } from "./redux/slices/cartSlice";
+import { MdOutlineLightMode } from "react-icons/md";
+import { FaCloudMoon } from "react-icons/fa";
+import "./App.css";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
