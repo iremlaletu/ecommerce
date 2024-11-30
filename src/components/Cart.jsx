@@ -90,7 +90,7 @@ const Cart = () => {
 
                 {/* Fiyat */}
                 <Typography variant="body2" sx={{ marginLeft: "auto" }}>
-                  {product.price * product.itemCount} $
+                  {product.price.toFixed(2) * product.itemCount} $
                 </Typography>
 
                 {/* Silme Butonu */}

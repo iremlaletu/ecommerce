@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { setSelectedProduct } from "../redux/slices/productSlice";
 import { addToCart, cartTotal } from "../redux/slices/cartSlice";
+import { showAlert } from "../redux/slices/appSlice";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { Box, Button } from "@mui/material";
@@ -58,6 +59,7 @@ const ProductDetail = () => {
       };
       dispatch(addToCart(payload));
       dispatch(cartTotal());
+      dispatch(showAlert("Added to Cart"));
     }
   };
 

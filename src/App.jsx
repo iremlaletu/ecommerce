@@ -11,6 +11,7 @@ import { setDrawer } from "./redux/slices/cartSlice";
 import { MdOutlineLightMode } from "react-icons/md";
 import { FaCloudMoon } from "react-icons/fa";
 import "./App.css";
+import AlertSnackbar from "./components/AlertSnackbar";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -25,11 +26,11 @@ function App() {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
 
-      <div style={{ padding: "10px", justifySelf: "end" }}>
+      <div style={{ padding: "20px", justifySelf: "end", cursor: "pointer" }}>
         {isDarkMode ? (
-          <MdOutlineLightMode onClick={changeTheme} className="icon" />
+          <MdOutlineLightMode onClick={changeTheme} fontSize="25px" />
         ) : (
-          <FaCloudMoon onClick={changeTheme} className="icon" />
+          <FaCloudMoon onClick={changeTheme} fontSize="25px" />
         )}
       </div>
       <PageWrapper>
@@ -47,6 +48,7 @@ function App() {
         >
           <Cart />
         </Drawer>
+        <AlertSnackbar />
       </PageWrapper>
     </ThemeProvider>
   );

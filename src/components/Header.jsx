@@ -51,6 +51,7 @@ const Header = () => {
       >
         <TextField
           variant="standard"
+          label="Products"
           placeholder="Search Products..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
